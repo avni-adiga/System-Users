@@ -1,0 +1,44 @@
+public class User
+{
+    private String userID;
+    private Password obj1;
+    private String accessLevel;
+    private boolean loggedIn;
+    
+    public User(String id, String p, String level)
+    {
+        obj1 = new Password(p);
+        userID = id;
+        accessLevel = level;
+        if(level.equals("Admin") || level.equals("SuperUser"))
+        {
+            accessLevel = level;
+        }
+        else
+        {
+            accessLevel = "Standard";
+        }
+    }
+    public boolean login(String a, String b)
+    {
+         if(a.equals(userID) && b.equals(obj1.getPassword()))
+         {
+             loggedIn = true;
+         }
+         return loggedIn;
+    }
+    
+    public void logout()
+    {
+        loggedIn = false;
+    }
+    
+    public String toString()
+    {    
+        if(loggedIn == true)
+        {
+            return "User: " + userID + "\n" + obj1 + "\nAccess Level: " + accessLevel;
+        }
+        return "Access Denied";
+    }
+}
